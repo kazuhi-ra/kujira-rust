@@ -1,4 +1,4 @@
 fn main() {
-    let i: i8 = 123;
-    println!("print: {}", i);
+    let f: f64 = 100.0;
+    println!("print: {}", f);
 }
