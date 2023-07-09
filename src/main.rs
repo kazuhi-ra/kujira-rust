@@ -24,4 +24,12 @@ fn main() {
     let mut primes = [0; 100];
     get_primses(&mut primes);
     println!("{:?}", primes);
+
+    let mut v: u32 = 10;
+    set_value(&mut v);
+    print!("{}", v);
+}
+
+fn set_value(arg: &mut u32) {
+    *arg = 4649;
 }
