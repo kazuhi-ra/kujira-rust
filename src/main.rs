@@ -1,12 +1,27 @@
-fn main() {
-    for i500 in 0u16..11 {
-        for i100 in 0u16..4 {
-            for i50 in 0u16..11 {
-                let amount = 500 * i500 + 100 * i100 + 50 * i50;
-                if amount == 3950 {
-                    println!("500円: {}枚, 100円: {}枚, 50円: {}枚", i500, i100, i50);
-                }
-            }
+fn is_prime(n: usize) -> bool {
+    for i in 2..n {
+        if n % i == 0 {
+            return false;
         }
     }
+    return true;
+}
+
+fn get_primses(primes: &mut [usize; 100]) -> () {
+    let mut i = 2;
+    let mut count = 0;
+
+    while count < 100 {
+        if is_prime(i) {
+            primes[count] = i;
+            count += 1;
+        }
+        i += 1;
+    }
+}
+
+fn main() {
+    let mut primes = [0; 100];
+    get_primses(&mut primes);
+    println!("{:?}", primes);
 }
