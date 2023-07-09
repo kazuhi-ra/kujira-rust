@@ -1,11 +1,13 @@
+fn fb(i: u32) -> u32 {
+    if i == 1 || i == 2 {
+        1
+    } else {
+        fb(i - 1) + fb(i - 2)
+    }
+}
+
 fn main() {
-    for a in 1..10 {
-        for b in 1..10 {
-            print!("{:3}", a * b);
-            if b != 9 {
-                print!(",");
-            }
-        }
-        println!("");
+    for i in 1..31 {
+        println!("{:3}: {}", i, fb(i))
     }
 }
