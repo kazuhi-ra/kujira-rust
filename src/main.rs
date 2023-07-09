@@ -1,13 +1,12 @@
-fn fb(i: u32) -> u32 {
-    if i == 1 || i == 2 {
-        1
-    } else {
-        fb(i - 1) + fb(i - 2)
-    }
-}
-
 fn main() {
-    for i in 1..31 {
-        println!("{:3}: {}", i, fb(i))
+    for i500 in 0..11 {
+        for i100 in 0..4 {
+            for i50 in 0..11 {
+                let amount = 500 * i500 + 100 * i100 + 50 * i50;
+                if amount == 3950 {
+                    println!("500円: {}枚, 100円: {}枚, 50円: {}枚", i500, i100, i50);
+                }
+            }
+        }
     }
 }
