@@ -1,23 +1,28 @@
-use rand::seq::SliceRandom;
+use std::io::stdin;
 
 fn main() {
-    let mut nums: Vec<u8> = vec![];
-    for i in 1..=75 {
-        nums.push(i)
+    let height_cm = input_f(0.0);
+    let weight = input_f(0.0);
+    let height = height_cm / 100.0;
+    let bmi = weight / height.powf(2.0);
+    println!("bmi: {}", bmi);
+}
+
+fn input_str() -> String {
+    let mut s = String::new();
+
+    match stdin().read_line(&mut s) {
+        Ok(_) => s.trim_end().to_string(),
+        Err(_) => "入力エラー".to_string(),
     }
+}
 
-    let mut rng = rand::thread_rng();
-    nums.shuffle(&mut rng);
+fn input_f(def: f64) -> f64 {
+    println!("{}", def);
+    let s = input_str();
 
-    for i in 0..25 {
-        let x = if i == 12 {
-            "*".to_string()
-        } else {
-            nums[i].to_string()
-        };
-        print!("{:3}", x);
-        if i % 5 == 4 {
-            println!("")
-        }
+    match s.trim().parse() {
+        Ok(v) => v,
+        Err(_) => def,
     }
 }
