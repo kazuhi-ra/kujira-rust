@@ -1,23 +1,19 @@
-use std::collections::HashMap;
-
-const V_DATA: &str = "C,A,A,B,C,A,A,B,C,A,A,B,C,A,A,B,C,A,A,B,C,A,A,B,U";
-
 fn main() {
-    let mut c_map: HashMap<&str, u8> = HashMap::new();
-    c_map.insert("A", 0);
-    c_map.insert("B", 0);
-    c_map.insert("C", 0);
+    let args = std::env::args();
+    let mut result = 0.0;
 
-    for w in V_DATA.split(',') {
-        match c_map.get(w) {
-            None => println!("unko: {}", w),
-            Some(v) => {
-                c_map.insert(w, *v + 1);
-            }
+    for (i, s) in args.enumerate() {
+        if i == 0 {
+            continue;
         }
+
+        let num = match s.parse() {
+            Ok(v) => v,
+            Err(_) => 0.0,
+        };
+
+        result += num;
     }
 
-    for k in ["A", "B", "C"] {
-        println!("{}: {:>2}", k, c_map[k]);
-    }
+    println!("total: {}", result)
 }
