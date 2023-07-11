@@ -1,28 +1,23 @@
-use std::io::stdin;
+use std::collections::HashMap;
+
+const V_DATA: &str = "C,A,A,B,C,A,A,B,C,A,A,B,C,A,A,B,C,A,A,B,C,A,A,B,U";
 
 fn main() {
-    let height_cm = input_f(0.0);
-    let weight = input_f(0.0);
-    let height = height_cm / 100.0;
-    let bmi = weight / height.powf(2.0);
-    println!("bmi: {}", bmi);
-}
+    let mut c_map: HashMap<&str, u8> = HashMap::new();
+    c_map.insert("A", 0);
+    c_map.insert("B", 0);
+    c_map.insert("C", 0);
 
-fn input_str() -> String {
-    let mut s = String::new();
-
-    match stdin().read_line(&mut s) {
-        Ok(_) => s.trim_end().to_string(),
-        Err(_) => "入力エラー".to_string(),
+    for w in V_DATA.split(',') {
+        match c_map.get(w) {
+            None => println!("unko: {}", w),
+            Some(v) => {
+                c_map.insert(w, *v + 1);
+            }
+        }
     }
-}
 
-fn input_f(def: f64) -> f64 {
-    println!("{}", def);
-    let s = input_str();
-
-    match s.trim().parse() {
-        Ok(v) => v,
-        Err(_) => def,
+    for k in ["A", "B", "C"] {
+        println!("{}: {:>2}", k, c_map[k]);
     }
 }
