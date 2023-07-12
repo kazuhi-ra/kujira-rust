@@ -1,19 +1,17 @@
 fn main() {
-    let args = std::env::args();
-    let mut result = 0.0;
+    let args: Vec<String> = std::env::args().collect();
 
-    for (i, s) in args.enumerate() {
-        if i == 0 {
-            continue;
-        }
-
-        let num = match s.parse() {
-            Ok(v) => v,
-            Err(_) => 0.0,
-        };
-
-        result += num;
+    if args.len() < 2 {
+        println!("plz file name");
+        return;
     }
 
-    println!("total: {}", result)
+    let file_name = &args[1];
+
+    let txt = match std::fs::read_to_string(file_name) {
+        Ok(v) => v,
+        Err(e) => e.to_string(),
+    };
+
+    println!("{txt}")
 }
