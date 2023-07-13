@@ -1,17 +1,16 @@
+struct Item(String, u16);
+
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
+    let banana = Item("banana".to_string(), 3000);
+    let apple = Item("apple".to_string(), 500);
 
-    if args.len() < 2 {
-        println!("plz file name");
-        return;
-    }
+    let total = banana.1 + apple.1;
+    print_tuple(banana);
+    print_tuple(apple);
 
-    let file_name = &args[1];
+    println!("total: {}", total)
+}
 
-    let txt = match std::fs::read_to_string(file_name) {
-        Ok(v) => v,
-        Err(e) => e.to_string(),
-    };
-
-    println!("{txt}")
+fn print_tuple(item: Item) {
+    println!("{}は{}円", item.0, item.1)
 }
