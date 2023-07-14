@@ -1,7 +1,10 @@
 fn main() {
-    let a = 3;
-    let b = a;
+    let a = "kazuhi-ra".to_string();
 
-    println!("{:p}", &a);
-    println!("{:p}", &b);
+    print_string(a);
+    println!("{}", a);
+}
+
+fn print_string(s: String) {
+    println!("{}", s)
 }
