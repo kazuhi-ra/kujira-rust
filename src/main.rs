@@ -1,9 +1,7 @@
 fn main() {
-    let a = "kazuhi-ra".to_string();
+    let a = 3;
+    let b = a;
 
-    {
-        let b = a;
-    }
-
-    println!("{}", a);
+    println!("{:p}", &a);
+    println!("{:p}", &b);
 }
