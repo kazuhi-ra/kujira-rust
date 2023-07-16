@@ -28,5 +28,5 @@ fn main() {
     let kirito = User::new("kirito", 16);
     kirito.introduce_myself();
     let kirito = kirito.turn_one_year_old();
-    kirito.introduce_myself()
+    User::introduce_myself(&kirito);
 }
