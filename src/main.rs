@@ -6,7 +6,7 @@ struct User {
 
 impl User {
     fn new(name: String, age: u8) -> Self {
-        User { name, age }
+        Self { name, age }
     }
 
     fn give_ones_name(&self) {
