@@ -32,12 +32,27 @@ impl TreasureBox for TrapBox {
     }
 }
 
-fn open_box(tbox: impl TreasureBox, key_no: u32) {
-    if !tbox.opne(key_no) {
-        println!("can't open");
-        return;
+struct Key {
+    number: u32,
+}
+
+struct User {
+    name: String,
+    key: Key,
+}
+
+trait BoxOpener {
+    fn open_box(&self, tbox: impl TreasureBox);
+}
+
+impl BoxOpener for User {
+    fn open_box(&self, tbox: impl TreasureBox) {
+        if !tbox.opne(self.key.number) {
+            println!("{} can't open box", &self.name);
+            return;
+        }
+        tbox.check();
     }
-    tbox.check();
 }
 
 fn main() {
@@ -46,8 +61,12 @@ fn main() {
         key_no: 1,
     };
     let box2 = TrapBox { damege: 10 };
+    let my_key = Key { number: 2 };
+    let kirito = User {
+        name: "kirito".to_string(),
+        key: my_key,
+    };
 
-    let my_key = 2;
-    open_box(box1, my_key);
-    open_box(box2, my_key);
+    kirito.open_box(box1);
+    kirito.open_box(box2);
 }
