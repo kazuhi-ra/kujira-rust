@@ -1,32 +1,53 @@
-#[derive(Debug, PartialEq)]
-struct User {
-    name: String,
-    age: u8,
+trait TreasureBox {
+    fn opne(&self, key_no: u32) -> bool;
+    fn check(&self);
 }
 
-impl User {
-    fn new(name: &str, age: u8) -> Self {
-        Self {
-            name: name.to_string(),
-            age,
-        }
+struct JewelryBox {
+    price: u32,
+    key_no: u32,
+}
+
+impl TreasureBox for JewelryBox {
+    fn opne(&self, key_no: u32) -> bool {
+        self.key_no == key_no
     }
 
-    fn introduce_myself(&self) {
-        println!("I am {}, {} years old.", self.name, self.age)
+    fn check(&self) {
+        println!("price: {}", self.price)
+    }
+}
+
+struct TrapBox {
+    damege: u32,
+}
+
+impl TreasureBox for TrapBox {
+    fn opne(&self, _: u32) -> bool {
+        true
     }
 
-    fn turn_one_year_old(self) -> Self {
-        Self {
-            age: self.age + 1,
-            ..self
-        }
+    fn check(&self) {
+        println!("damage: {}", self.damege)
     }
+}
+
+fn open_box(tbox: impl TreasureBox, key_no: u32) {
+    if !tbox.opne(key_no) {
+        println!("can't open");
+        return;
+    }
+    tbox.check();
 }
 
 fn main() {
-    let kirito = User::new("kirito", 16);
-    kirito.introduce_myself();
-    let kirito = kirito.turn_one_year_old();
-    User::introduce_myself(&kirito);
+    let box1 = JewelryBox {
+        price: 30,
+        key_no: 1,
+    };
+    let box2 = TrapBox { damege: 10 };
+
+    let my_key = 2;
+    open_box(box1, my_key);
+    open_box(box2, my_key);
 }
