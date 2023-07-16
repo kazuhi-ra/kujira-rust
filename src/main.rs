@@ -5,8 +5,11 @@ struct User {
 }
 
 impl User {
-    fn new(name: String, age: u8) -> Self {
-        Self { name, age }
+    fn new(name: &str, age: u8) -> Self {
+        Self {
+            name: name.to_string(),
+            age,
+        }
     }
 
     fn give_ones_name(&self) {
@@ -15,6 +18,6 @@ impl User {
 }
 
 fn main() {
-    let kirito = User::new(String::from("kirito"), 16);
+    let kirito = User::new("kirito", 16);
     kirito.give_ones_name()
 }
