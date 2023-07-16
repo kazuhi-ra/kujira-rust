@@ -48,7 +48,7 @@ trait BoxOpener {
 impl BoxOpener for User {
     fn open_box(&self, tbox: impl TreasureBox) {
         if !tbox.opne(self.key.number) {
-            println!("{} can't open box", &self.name);
+            println!("{} can't open box", self.name);
             return;
         }
         tbox.check();
