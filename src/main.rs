@@ -1,18 +1,22 @@
-fn main() {}
+struct User {
+    name: String,
+    age: u8,
+}
 
 #[cfg(test)]
 mod tests {
+    use super::User;
     #[test]
-    fn array() {
-        let a1 = [100, 200, 300];
-        let a2 = [100, 200, 300];
-        assert_eq!(a1, a2)
-    }
+    fn strc() {
+        let u1 = User {
+            name: "kazuhira".to_string(),
+            age: 27,
+        };
+        let u2 = User {
+            name: "kirito".to_string(),
+            age: 16,
+        };
 
-    #[test]
-    fn vec() {
-        let v1: Vec<u16> = vec![100, 200, 300];
-        let v2: Vec<u16> = vec![100, 200, 300];
-        assert_eq!(v1, v2)
+        assert_eq!(u1, u2)
     }
 }
