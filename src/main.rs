@@ -12,12 +12,18 @@ impl User {
         }
     }
 
-    fn give_ones_name(&self) {
-        println!("I am {}.", self.name)
+    fn introduce_myself(&self) {
+        println!("I am {}, {} years old.", self.name, self.age)
+    }
+
+    fn turn_one_year_old(&mut self) {
+        self.age += 1;
     }
 }
 
 fn main() {
-    let kirito = User::new("kirito", 16);
-    kirito.give_ones_name()
+    let mut kirito = User::new("kirito", 16);
+    kirito.introduce_myself();
+    kirito.turn_one_year_old();
+    kirito.introduce_myself()
 }
