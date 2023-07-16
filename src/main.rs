@@ -1,3 +1,4 @@
+#[derive(Debug)]
 struct User {
     name: String,
     age: u8,
