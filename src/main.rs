@@ -1,28 +1,31 @@
-#[derive(Debug)]
-struct Point<T> {
-    x: T,
-    y: T,
+struct FibIterator {
+    a: usize,
+    b: usize,
 }
 
-impl<T> Point<T>
-where
-    T: std::ops::AddAssign,
-{
-    fn new(x: T, y: T) -> Self {
-        Point { x, y }
+impl FibIterator {
+    fn new() -> Self {
+        FibIterator { a: 1, b: 1 }
     }
+}
 
-    fn add(&mut self, pt: Self) {
-        self.x += pt.x;
-        self.y += pt.y;
+impl Iterator for FibIterator {
+    type Item = usize;
+    fn next(&mut self) -> Option<Self::Item> {
+        let tmp = self.a;
+        self.a = self.b;
+        self.b = self.a + tmp;
+        Some(self.a)
     }
 }
 
 fn main() {
-    let mut p1 = Point::new(3, 8);
-    let p2 = Point::new(-2, 4);
+    let fib_iter = FibIterator::new();
 
-    p1.add(p2);
-
-    println!("{:?}", p1)
+    for (i, u) in fib_iter.enumerate() {
+        if i >= 10 {
+            break;
+        }
+        println!("{}", u)
+    }
 }
