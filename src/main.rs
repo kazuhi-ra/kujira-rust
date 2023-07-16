@@ -1,15 +1,11 @@
 fn main() {
-    let a = add_i32(-10, 42);
+    let a = add(-10, 42_i64);
     println!("{}", a);
 
-    let b = add_u64(10, 42);
+    let b = add(10_u8, 42);
     println!("{}", b);
 }
 
-fn add_i32(a: i32, b: i32) -> i32 {
-    a + b
-}
-
-fn add_u64(a: u64, b: u64) -> u64 {
+fn add<T: std::ops::Add<Output = T>>(a: T, b: T) -> T {
     a + b
 }
