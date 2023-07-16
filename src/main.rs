@@ -16,14 +16,17 @@ impl User {
         println!("I am {}, {} years old.", self.name, self.age)
     }
 
-    fn turn_one_year_old(&mut self) {
-        self.age += 1;
+    fn turn_one_year_old(self) -> Self {
+        Self {
+            age: self.age + 1,
+            ..self
+        }
     }
 }
 
 fn main() {
-    let mut kirito = User::new("kirito", 16);
+    let kirito = User::new("kirito", 16);
     kirito.introduce_myself();
-    kirito.turn_one_year_old();
+    let kirito = kirito.turn_one_year_old();
     kirito.introduce_myself()
 }
