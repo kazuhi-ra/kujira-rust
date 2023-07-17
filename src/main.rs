@@ -1,13 +1,21 @@
-macro_rules! echo_nums {
-    ( $( $num:expr ),* ) => {
-        $ (
-            print!("{}, ", $num);
-        ) *
-        println!("");
-    }
+struct Node {
+    data: i64,
+    link: Option<Box<Node>>,
+}
+
+fn node(data: i64, link: Option<Box<Node>>) -> Option<Box<Node>> {
+    Some(Box::new(Node { data, link }))
 }
 
 fn main() {
-    echo_nums![1, 2, 3, 4];
-    print!("")
+    let c = node(10, node(20, node(30, None))).unwrap();
+
+    let mut p = &c;
+    loop {
+        println!("{}", p.data);
+        match p.link {
+            None => break,
+            Some(ref link) => p = &link,
+        }
+    }
 }
