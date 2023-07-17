@@ -1,11 +1,13 @@
-macro_rules! echo_num {
-    ($num:expr) => {
-        println!("{}", $num);
-    };
+macro_rules! echo_nums {
+    ( $( $num:expr ),* ) => {
+        $ (
+            print!("{}, ", $num);
+        ) *
+        println!("");
+    }
 }
 
 fn main() {
-    echo_num!(1);
-    echo_num![2];
-    echo_num! {3};
+    echo_nums![1, 2, 3, 4];
+    print!("")
 }
